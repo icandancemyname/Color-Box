@@ -1,0 +1,78 @@
+@import "reset";
+
+$box-color: #0F9988;
+$base-size: 300px;
+
+%box-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%color-box {
+  @extend %box-flex;
+  width: $base-size;
+  height: $base-size;
+  background: $box-color;
+  color: white;
+  font-family: sans-serif;
+}
+
+@mixin scale($factor) {
+  width: $base-size*$factor;
+  height: $base-size*$factor;
+}
+
+body{
+  height: 100vh;
+  @extend %box-flex;
+
+}
+
+.base{
+  @extend %color-box;
+  order: 3;
+  &:after {
+    content: " ("+ $box-color +")";
+  }
+}
+
+.dark{
+  @extend %color-box;
+  @include scale (0.9);
+  background: darken($box-color, 10%);
+  order: 2;
+  &:after {
+    content: " ("+ darken($box-color, 10%) +")";
+  }
+}
+
+.darker{
+  @extend %color-box;
+  @include scale (0.8);
+  background: darken($box-color, 15%);
+  order: 1;
+  &:after  {
+    content: " ("+ darken($box-color, 15%) +")";
+  }
+}
+
+.light{
+  @extend %color-box;
+  @include scale (0.9);
+  background: lighten($box-color, 10%);
+  order: 4;
+  &:after {
+    content: " ("+ lighten($box-color, 10%) +")";
+  }
+}
+
+.lighter{
+  @extend %color-box;
+  @include scale (0.8);
+  background: lighten($box-color, 15%);
+  order: 5;
+  &:after {
+    content: " ("+ lighten($box-color, 15%) +")";
+  }
+}
